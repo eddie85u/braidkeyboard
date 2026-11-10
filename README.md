@@ -2,7 +2,7 @@
 
 A swipe keyboard for Android that reads two thumbs at once. Glide with one thumb, with both, tap, or mix them, in English and Spanish. Everything stays on your phone: Braid has no internet permission.
 
-**[Download the latest version](https://github.com/eddie85u/braid-app/releases/latest)**: open this link on your Android phone and tap `braid.apk`.
+**[Download the latest version](https://github.com/eddie85u/braidkeyboard/releases/latest)**: open this link on your Android phone and tap `braid.apk`.
 
 ## Install
 1. Open the link above on the phone and download `braid.apk`.
