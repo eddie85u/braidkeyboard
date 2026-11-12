@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Braid Keyboard: the last keyboard you'll ever use</title>
-<meta name="description" content="A swipe keyboard for Android that reads two thumbs at once. One thumb, two, taps or a mix, in English and Spanish. Free, private, no internet permission.">
+<meta name="description" content="A swipe keyboard for Android that reads two thumbs at once. One thumb, two, taps or a mix, in English and Spanish. Learns your words. Free, private, no internet permission.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Braid Keyboard">
 <meta property="og:title" content="Braid Keyboard: the last keyboard you'll ever use">
@@ -24,45 +24,133 @@
 <style>
   :root{--bg:#140c1a;--card:#1f1426;--text:#fbf3fd;--muted:#d9c9de;--orchid:#c864d8;--mint:#9af0b8;--line:rgba(255,255,255,.08)}
   *{box-sizing:border-box}
-  body{margin:0;background:radial-gradient(120% 80% at 0% 0%,#2a1533 0%,var(--bg) 60%);background-color:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
-  main{max-width:980px;margin:0 auto;padding:40px 16px 56px;display:grid;gap:40px;grid-template-columns:minmax(0,1fr)}
-  @media(min-width:860px){main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;padding-top:72px}}
+  html:not([lang=es]) [lang=es],html[lang=es] [lang=en]{display:none}
+  body{margin:0;background:radial-gradient(120% 60% at 0% 0%,#2a1533 0%,var(--bg) 55%);background-color:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+  a{color:var(--mint)}
+  .hero{display:grid;gap:40px;grid-template-columns:minmax(0,1fr);padding:40px 0 48px}
+  @media(min-width:860px){.hero{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;padding-top:72px}}
   .wm{height:40px;width:auto}
-  h1{font-size:clamp(36px,7vw,56px);line-height:1.06;font-weight:800;letter-spacing:-1px;margin:28px 0 16px}
+  h1{font-size:clamp(36px,7vw,58px);line-height:1.05;font-weight:800;letter-spacing:-1px;margin:28px 0 16px}
+  h2{font-size:clamp(26px,4.5vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.5px;margin:0 0 12px}
+  h3{font-size:18px;margin:0 0 6px}
   .a{color:var(--orchid)}.b{color:var(--mint)}
   p{font-size:18px;line-height:1.5;color:var(--muted);margin:0 0 14px}
   .btn{display:inline-block;margin:14px 0 8px;padding:16px 28px;border-radius:999px;background:var(--orchid);color:var(--bg);font-weight:800;font-size:19px;text-decoration:none}
   .small{font-size:14px;color:var(--muted)}
-  .small a{color:var(--mint)}
   .kb{width:100%;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px var(--line)}
+  section.block{padding:40px 0}
+  .lead{max-width:680px}
+  .stats{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media(min-width:760px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+  .num{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--mint);line-height:1}
+  .stat .num.o{color:var(--orchid)}
+  .stat p{font-size:14px;margin:8px 0 0;line-height:1.4}
+  .bars{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:20px}
+  .bar{display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:12px;align-items:center;margin:10px 0;font-size:15px;color:var(--muted)}
+  .bar i{display:block;height:14px;border-radius:7px;background:var(--orchid)}
+  .bar.one i{background:#6d5a75}
+  .bar b{color:var(--text);text-align:right}
+  .src{font-size:13px;color:var(--muted);margin:12px 0 0}
+  .grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+  @media(min-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(min-width:960px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+  .card p{font-size:15px;margin:0}
+  .ico{width:36px;height:36px;border-radius:10px;background:rgba(200,100,216,.16);display:grid;place-items:center;margin-bottom:12px}
+  .ico svg{width:20px;height:20px;stroke:var(--orchid);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .card:nth-child(even) .ico{background:rgba(154,240,184,.14)}
+  .card:nth-child(even) .ico svg{stroke:var(--mint)}
+  .honest{border-left:3px solid var(--mint);padding:4px 0 4px 16px;max-width:760px}
+  .honest p{font-size:15px}
   ol{margin:0;padding-left:20px;color:var(--muted);line-height:1.55;font-size:16px}
-  .steps{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;grid-column:1/-1}
-  .steps h2{font-size:18px;margin:0 0 10px}
-  footer{grid-column:1/-1;font-size:14px;color:var(--muted)}
+  .steps{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .cta{text-align:center;padding:48px 0 24px}
+  footer{font-size:14px;color:var(--muted);padding:24px 0 48px;border-top:1px solid var(--line)}
   footer a{color:var(--muted)}
 </style>
 </head>
 <body>
-<main>
-  <section>
-    <img class="wm" src="wordmark.svg" alt="Braid Keyboard">
-    <h1 data-en="The last keyboard &lt;span class=a&gt;you'll&lt;/span&gt; &lt;span class=b&gt;ever use&lt;/span&gt;" data-es="El último teclado &lt;span class=a&gt;que vas&lt;/span&gt; &lt;span class=b&gt;a usar&lt;/span&gt;">The last keyboard <span class="a">you'll</span> <span class="b">ever use</span></h1>
-    <p data-en="Swipe with one thumb, with both at once, tap, or mix them, in English and Spanish. It learns how you type and keeps it on your phone: Braid has no internet permission." data-es="Desliza con un pulgar, con los dos a la vez, toca o mezcla, en español e inglés. Aprende cómo escribes y lo guarda en tu teléfono: Braid no tiene permiso de internet.">Swipe with one thumb, with both at once, tap, or mix them, in English and Spanish. It learns how you type and keeps it on your phone: Braid has no internet permission.</p>
-    <a class="btn" href="https://github.com/eddie85u/braidkeyboard/releases/latest/download/braid.apk" data-en="Download for Android" data-es="Descargar para Android">Download for Android</a>
-    <div class="small" data-en="Free. Open this page on your Android phone. &lt;a href=https://github.com/eddie85u/braidkeyboard/releases/latest&gt;All versions&lt;/a&gt;" data-es="Gratis. Abre esta página en tu Android. &lt;a href=https://github.com/eddie85u/braidkeyboard/releases/latest&gt;Todas las versiones&lt;/a&gt;">Free. Open this page on your Android phone. <a href="https://github.com/eddie85u/braidkeyboard/releases/latest">All versions</a></div>
+<div class="wrap">
+  <div class="hero">
+    <section>
+      <img class="wm" src="wordmark.svg" alt="Braid Keyboard">
+      <h1><span lang="en">The last keyboard <span class="a">you'll</span> <span class="b">ever use</span></span><span lang="es">El último teclado <span class="a">que vas</span> <span class="b">a usar</span></span></h1>
+      <p lang="en">Swipe with both thumbs at once, with one, tap, or mix them in the same word, in English and Spanish without switching. It learns your words and keeps them on your phone: Braid has no internet permission.</p>
+      <p lang="es">Desliza con los dos pulgares a la vez, con uno, toca o mezcla en la misma palabra, en español e inglés sin cambiar de idioma. Aprende tus palabras y las guarda en tu teléfono: Braid no tiene permiso de internet.</p>
+      <a class="btn" href="https://github.com/eddie85u/braidkeyboard/releases/latest/download/braid.apk"><span lang="en">Download for Android</span><span lang="es">Descargar para Android</span></a>
+      <div class="small"><span lang="en">Free. Open this page on your Android phone. <a href="https://github.com/eddie85u/braidkeyboard/releases/latest">All versions</a></span><span lang="es">Gratis. Abre esta página en tu Android. <a href="https://github.com/eddie85u/braidkeyboard/releases/latest">Todas las versiones</a></span></div>
+    </section>
+    <img class="kb" src="keyboard.png" alt="Braid with two thumbs gliding at once">
+  </div>
+
+  <section class="block">
+    <div class="stats">
+      <div class="stat"><div class="num">93%</div><p lang="en">of real two-thumb swipes read right on the first guess; 99% in the top three.</p><p lang="es">de deslizamientos reales con dos pulgares, acertados a la primera; 99% entre las tres primeras.</p></div>
+      <div class="stat"><div class="num o">1 ms</div><p lang="en">to read a swipe (median). The word is there as your thumbs lift.</p><p lang="es">para leer un deslizamiento (mediana). La palabra está ahí al levantar los pulgares.</p></div>
+      <div class="stat"><div class="num">2</div><p lang="en">languages in one: English and Spanish together, no switching.</p><p lang="es">idiomas en uno: español e inglés juntos, sin cambiar.</p></div>
+      <div class="stat"><div class="num o">0</div><p lang="en">bytes sent. No internet permission, so your words can't leave your phone.</p><p lang="es">bytes enviados. Sin permiso de internet, tus palabras no salen de tu teléfono.</p></div>
+    </div>
   </section>
-  <img class="kb" src="keyboard.png" alt="Braid with two thumbs gliding at once">
-  <section class="steps">
-    <h2 data-en="Install in a minute" data-es="Instálalo en un minuto">Install in a minute</h2>
-    <ol data-en="&lt;li&gt;Tap Download and open &lt;b&gt;braid.apk&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Samsung:&lt;/b&gt; turn off Auto Blocker first (Settings → Security and privacy → Auto Blocker). You can turn it back on after.&lt;/li&gt;&lt;li&gt;If Android asks, allow &lt;b&gt;Install unknown apps&lt;/b&gt; for your browser, then tap Install. If Play Protect warns, tap More details → Install anyway: Braid isn't on the Play Store yet.&lt;/li&gt;&lt;li&gt;Open Braid: its setup turns the keyboard on.&lt;/li&gt;" data-es="&lt;li&gt;Toca Descargar y abre &lt;b&gt;braid.apk&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Samsung:&lt;/b&gt; apaga primero Auto Blocker (Ajustes → Seguridad y privacidad → Auto Blocker). Luego lo puedes volver a encender.&lt;/li&gt;&lt;li&gt;Si Android pregunta, permite &lt;b&gt;Instalar apps desconocidas&lt;/b&gt; para tu navegador y toca Instalar. Si Play Protect avisa, toca Más detalles → Instalar de todos modos: Braid aún no está en Play Store.&lt;/li&gt;&lt;li&gt;Abre Braid: su configuración activa el teclado.&lt;/li&gt;"><li>Tap Download and open <b>braid.apk</b>.</li><li><b>Samsung:</b> turn off Auto Blocker first (Settings → Security and privacy → Auto Blocker). You can turn it back on after.</li><li>If Android asks, allow <b>Install unknown apps</b> for your browser, then tap Install. If Play Protect warns, tap More details → Install anyway: Braid isn't on the Play Store yet.</li><li>Open Braid: its setup turns the keyboard on.</li></ol>
+
+  <section class="block">
+    <div class="lead">
+      <h2><span lang="en">Two thumbs are faster than one</span><span lang="es">Dos pulgares son más rápidos que uno</span></h2>
+      <p lang="en">In the largest study of phone typing, people typing with two thumbs averaged 30% more words a minute than people typing with one finger. Braid reads both thumbs at once, so you can split a word between them, swipe one half and tap the other, or keep one thumb if that's how you type.</p>
+      <p lang="es">En el estudio más grande sobre escritura en el teléfono, quienes escriben con dos pulgares hicieron en promedio 30% más palabras por minuto que quienes escriben con un dedo. Braid lee los dos pulgares a la vez: reparte una palabra entre ellos, desliza una mitad y toca la otra, o sigue con un pulgar si así escribes.</p>
+    </div>
+    <div class="bars" role="img" aria-label="Two thumbs 38 words a minute, one finger 29">
+      <div class="bar"><span lang="en">Two thumbs</span><span lang="es">Dos pulgares</span><i style="width:100%"></i><b>38 wpm</b></div>
+      <div class="bar one"><span lang="en">One finger</span><span lang="es">Un dedo</span><i style="width:76%"></i><b>29 wpm</b></div>
+      <p class="src"><span lang="en">Average typing speed of 37,370 people.</span><span lang="es">Velocidad promedio de 37.370 personas.</span> <a href="https://www.pokristensson.com/pubs/PalinEtAlMobileHCI2019.pdf">Palin et al., MobileHCI 2019</a></p>
+    </div>
   </section>
-  <footer data-en="Built with love in Colombia, by Eddie Bello. Built on &lt;a href=https://github.com/florisboard/florisboard&gt;FlorisBoard&lt;/a&gt; (Apache 2.0)." data-es="Hecho con amor en Colombia, por Eddie Bello. Basado en &lt;a href=https://github.com/florisboard/florisboard&gt;FlorisBoard&lt;/a&gt; (Apache 2.0).">Built with love in Colombia, by Eddie Bello. Built on <a href="https://github.com/florisboard/florisboard">FlorisBoard</a> (Apache 2.0).</footer>
-</main>
+
+  <section class="block">
+    <h2><span lang="en">What it does</span><span lang="es">Lo que hace</span></h2>
+    <div class="grid">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 18c5-2 4-10 8-12M20 18c-5-2-4-10-8-12"/></svg></div><h3><span lang="en">Swipe with both thumbs</span><span lang="es">Desliza con los dos pulgares</span></h3><p lang="en">Each thumb sweeps its half of the word at the same time. Mix taps and swipes in one word: Braid reads it all as one.</p><p lang="es">Cada pulgar recorre su mitad de la palabra al mismo tiempo. Mezcla toques y deslizamientos en una palabra: Braid lo lee todo junto.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></div><h3><span lang="en">It learns your words</span><span lang="es">Aprende tus palabras</span></h3><p lang="en">Names, slang, your brand: type a new word a few times and it's yours to swipe. It also learns which words you use together.</p><p lang="es">Nombres, jerga, tu marca: escribe una palabra nueva unas veces y ya la puedes deslizar. También aprende qué palabras usas juntas.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg></div><h3><span lang="en">English and Spanish at once</span><span lang="es">Español e inglés a la vez</span></h3><p lang="en">One keyboard for both. Write "nos vemos at the meeting" without touching a language button.</p><p lang="es">Un solo teclado para los dos. Escribe "see you en la reunión" sin tocar un botón de idioma.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M20 6H9l-5 6 5 6h11z"/><path d="M13 10l4 4M17 10l-4 4"/></svg></div><h3><span lang="en">Delete by sliding</span><span lang="es">Borra deslizando</span></h3><p lang="en">Slide left from delete and the selection follows your thumb, a letter at a time. Go far and it runs through whole words. Lift to erase, one undo to bring it back.</p><p lang="es">Desliza a la izquierda desde borrar y la selección sigue tu pulgar, letra por letra. Ve lejos y avanza por palabras enteras. Levanta para borrar; un deshacer lo devuelve.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg></div><h3><span lang="en">Move and select with the space bar</span><span lang="es">Mueve y selecciona con la barra espaciadora</span></h3><p lang="en">Slide on space to move the cursor and slide from shift to select text. No more poking at tiny handles.</p><p lang="es">Desliza en el espacio para mover el cursor y desliza desde mayúsculas para seleccionar. Se acabó pelear con los marcadores.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 14h6"/></svg></div><h3><span lang="en">Clipboard and saved texts</span><span lang="es">Portapapeles y textos guardados</span></h3><p lang="en">Recent clips and the texts you save in one place, searchable. Give a saved text a shortcut, like @@ for your email.</p><p lang="es">Lo que copiaste y los textos que guardas, en un solo lugar y con búsqueda. Dale un atajo a un texto guardado, como @@ para tu correo.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18M3 12h9"/></svg></div><h3><span lang="en">Make it yours</span><span lang="es">Hazlo tuyo</span></h3><p lang="en">13 themes, glide trails, key-press effects like Explosion, Ripple and Confetti, key motion and haptics that feel your swipe.</p><p lang="es">13 temas, estelas al deslizar, efectos al tocar como Explosión, Onda y Confeti, movimiento de teclas y vibración que sigue tu trazo.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div><h3><span lang="en">Your speed, measured</span><span lang="es">Tu velocidad, medida</span></h3><p lang="en">Stats show how fast you type in each style and how much faster swiping is for you. Take the typing test, share your card.</p><p lang="es">Las estadísticas muestran qué tan rápido escribes en cada estilo y cuánto más rápido es deslizar para ti. Haz la prueba de escritura y comparte tu tarjeta.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div><h3><span lang="en">Private by design</span><span lang="es">Privado de verdad</span></h3><p lang="en">No internet permission, no account, no cloud backup of what you type. Incognito with one tap for anything sensitive.</p><p lang="es">Sin permiso de internet, sin cuenta, sin copias en la nube de lo que escribes. Incógnito con un toque para lo delicado.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="honest">
+      <h3><span lang="en">How we measure</span><span lang="es">Cómo medimos</span></h3>
+      <p lang="en">93% comes from replaying 234 real two-thumb swipes from our tester's phone through the current engine; 1 ms is the median time to read a swipe on a phone build. We haven't timed Braid against other keyboards yet, so we don't claim to beat them. Once we have, the numbers go here.</p>
+      <p lang="es">El 93% sale de repetir 234 deslizamientos reales con dos pulgares, del teléfono de nuestro probador, con el motor actual; 1 ms es la mediana para leer un deslizamiento en un teléfono. Aún no hemos medido a Braid contra otros teclados, así que no decimos que les gane. Cuando lo hagamos, los números van aquí.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="steps">
+      <h2><span lang="en">Install in a minute</span><span lang="es">Instálalo en un minuto</span></h2>
+      <ol lang="en"><li>Tap Download and open <b>braid.apk</b>.</li><li><b>Samsung:</b> turn off Auto Blocker first (Settings → Security and privacy → Auto Blocker). You can turn it back on after.</li><li>If Android asks, allow <b>Install unknown apps</b> for your browser, then tap Install. If Play Protect warns, tap More details → Install anyway: Braid isn't on the Play Store yet.</li><li>Open Braid: its setup turns the keyboard on.</li></ol>
+      <ol lang="es"><li>Toca Descargar y abre <b>braid.apk</b>.</li><li><b>Samsung:</b> apaga primero Auto Blocker (Ajustes → Seguridad y privacidad → Auto Blocker). Luego lo puedes volver a encender.</li><li>Si Android pregunta, permite <b>Instalar apps desconocidas</b> para tu navegador y toca Instalar. Si Play Protect avisa, toca Más detalles → Instalar de todos modos: Braid aún no está en Play Store.</li><li>Abre Braid: su configuración activa el teclado.</li></ol>
+      <p class="small" style="margin-top:14px"><span lang="en">Updating? Install over your current Braid; it keeps the words it learned.</span><span lang="es">¿Actualizando? Instala encima de tu Braid actual; conserva las palabras que aprendió.</span></p>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2><span lang="en">Try it on your next message</span><span lang="es">Pruébalo en tu próximo mensaje</span></h2>
+    <a class="btn" href="https://github.com/eddie85u/braidkeyboard/releases/latest/download/braid.apk"><span lang="en">Download for Android</span><span lang="es">Descargar para Android</span></a>
+  </div>
+
+  <footer><span lang="en">Built with love in Colombia, by Eddie Bello. Built on <a href="https://github.com/florisboard/florisboard">FlorisBoard</a> (Apache 2.0).</span><span lang="es">Hecho con amor en Colombia, por Eddie Bello. Basado en <a href="https://github.com/florisboard/florisboard">FlorisBoard</a> (Apache 2.0).</span></footer>
+</div>
 <script>
   try {
-    if ((navigator.language || '').toLowerCase().startsWith('es')) {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'es' || (!q && (navigator.language || '').toLowerCase().startsWith('es'))) {
       document.documentElement.lang = 'es';
-      document.querySelectorAll('[data-es]').forEach(function (el) { el.innerHTML = el.getAttribute('data-es'); });
       document.title = 'Braid Keyboard: el último teclado que vas a usar';
     }
   } catch (e) {}
