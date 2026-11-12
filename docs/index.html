@@ -48,9 +48,10 @@
   .num{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1}
   .stat p{font-size:14px;margin:8px 0 0;line-height:1.4}
   .bars{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:20px}
+  .bars h3{font-size:15px;color:var(--muted);font-weight:700;margin:0 0 4px}
   .bar{display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:12px;align-items:center;margin:10px 0;font-size:15px;color:var(--muted)}
   .bar i{display:block;height:14px;border-radius:7px;background:var(--text)}
-  .bar.one i{background:var(--line);outline:1px solid var(--line)}
+  .bar.one i{background:var(--muted);opacity:.4}
   .bar b{color:var(--text);text-align:right}
   .src{font-size:13px;color:var(--muted);margin:12px 0 0}
   .grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
@@ -94,6 +95,28 @@
 
   <section class="block">
     <div class="lead">
+      <h2><span lang="en">Braid vs Gboard</span><span lang="es">Braid vs Gboard</span></h2>
+      <p lang="en">The same 740 test swipes, one thumb, played into both keyboards. Braid got the word right on the first guess as often or more, at a fraction of the size and with no internet access.</p>
+      <p lang="es">Los mismos 740 deslizamientos de prueba, con un pulgar, en los dos teclados. Braid acertó la palabra a la primera igual o más veces, con una fracción del tamaño y sin acceso a internet.</p>
+    </div>
+    <div class="bars">
+      <h3><span lang="en">Right on the first guess, neat swipes</span><span lang="es">Acierto a la primera, trazos limpios</span></h3>
+      <div class="bar"><span>Braid</span><i style="width:98%"></i><b>98%</b></div>
+      <div class="bar one"><span>Gboard</span><i style="width:95%"></i><b>95%</b></div>
+      <h3 style="margin-top:16px"><span lang="en">Right on the first guess, sloppy swipes</span><span lang="es">Acierto a la primera, trazos descuidados</span></h3>
+      <div class="bar"><span>Braid</span><i style="width:93%"></i><b>93%</b></div>
+      <div class="bar one"><span>Gboard</span><i style="width:91%"></i><b>91%</b></div>
+      <h3 style="margin-top:16px"><span lang="en">App size</span><span lang="es">Tamaño de la app</span></h3>
+      <div class="bar"><span>Braid</span><i style="width:7.6%"></i><b>6.4 MB</b></div>
+      <div class="bar one"><span>Gboard</span><i style="width:100%"></i><b>84.5 MB</b></div>
+      <h3 style="margin-top:16px"><span lang="en">Internet permission</span><span lang="es">Permiso de internet</span></h3>
+      <p class="src" style="margin-top:4px"><span lang="en"><b>Braid: none.</b> Gboard: yes.</span><span lang="es"><b>Braid: ninguno.</b> Gboard: sí.</span></p>
+      <p class="src"><span lang="en">Computer-generated English swipes on an Android emulator, Gboard 15.1 with default settings, November 2026. Real-thumb tests are next.</span><span lang="es">Deslizamientos en inglés generados por computadora en un emulador de Android, Gboard 15.1 con su configuración de fábrica, noviembre de 2026. Siguen las pruebas con pulgares reales.</span></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="lead">
       <h2><span lang="en">Two thumbs are faster than one</span><span lang="es">Dos pulgares son más rápidos que uno</span></h2>
       <p lang="en">In the largest study of phone typing, people typing with two thumbs averaged 30% more words a minute than people typing with one finger. Braid reads both thumbs at once, so you can split a word between them, swipe one half and tap the other, or keep one thumb if that's how you type.</p>
       <p lang="es">En el estudio más grande sobre escritura en el teléfono, quienes escriben con dos pulgares hicieron en promedio 30% más palabras por minuto que quienes escriben con un dedo. Braid lee los dos pulgares a la vez: reparte una palabra entre ellos, desliza una mitad y toca la otra, o sigue con un pulgar si así escribes.</p>
@@ -123,8 +146,8 @@
   <section class="block">
     <div class="honest">
       <h3><span lang="en">How we measure</span><span lang="es">Cómo medimos</span></h3>
-      <p lang="en">93% comes from replaying 234 real two-thumb swipes from our tester's phone through the current engine; 1 ms is the median time to read a swipe on a phone build. Next: head-to-head tests against the big keyboards, on the same phone and the same phrases. The results go here, win or lose.</p>
-      <p lang="es">El 93% sale de repetir 234 deslizamientos reales con dos pulgares, del teléfono de nuestro probador, con el motor actual; 1 ms es la mediana para leer un deslizamiento en un teléfono. Lo siguiente: pruebas cara a cara contra los teclados grandes, en el mismo teléfono y con las mismas frases. Los resultados van aquí, ganemos o perdamos.</p>
+      <p lang="en">93% comes from replaying 234 real two-thumb swipes from our tester's phone through the current engine; 1 ms is the median time to read a swipe on a phone build. Braid vs Gboard: 740 computer-generated one-thumb swipes (70 and 300 common English words, neat and sloppy, two random seeds) played into both keyboards on an Android emulator, with learning off. Braid's engine was tuned on swipes like these, so read it as on par or slightly ahead, not a clear win; the test with real thumbs is next, and its results go here, win or lose.</p>
+      <p lang="es">El 93% sale de repetir 234 deslizamientos reales con dos pulgares, del teléfono de nuestro probador, con el motor actual; 1 ms es la mediana para leer un deslizamiento en un teléfono. Braid vs Gboard: 740 deslizamientos con un pulgar generados por computadora (70 y 300 palabras comunes en inglés, limpios y descuidados, dos semillas al azar) en los dos teclados en un emulador de Android, sin aprendizaje. El motor de Braid se ajustó con deslizamientos así, así que léelo como parejo o un poco adelante, no una victoria clara; sigue la prueba con pulgares reales, y sus resultados van aquí, ganemos o perdamos.</p>
     </div>
   </section>
 
