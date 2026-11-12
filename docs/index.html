@@ -18,39 +18,39 @@
 <meta name="twitter:title" content="Braid Keyboard: the last keyboard you'll ever use">
 <meta name="twitter:description" content="Swipe with one thumb or two, in English and Spanish. Free for Android.">
 <meta name="twitter:image" content="https://eddie85u.github.io/braidkeyboard/og.png">
-<meta name="theme-color" content="#140c1a">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#140c1a;--card:#1f1426;--text:#fbf3fd;--muted:#d9c9de;--orchid:#c864d8;--mint:#9af0b8;--line:rgba(255,255,255,.08)}
+  :root{--bg:#ffffff;--card:#f6f6f7;--text:#16131a;--muted:#55505c;--orchid:#9b3fb0;--mint:#1f8a55;--line:rgba(0,0,0,.08);--btn:#16131a;--btntext:#fff;--ico:rgba(0,0,0,.05)}
+  @media(prefers-color-scheme:dark){:root{--bg:#111113;--card:#1b1b1e;--text:#f4f4f5;--muted:#a8a8b0;--orchid:#d08ae0;--mint:#8fe3b0;--line:rgba(255,255,255,.09);--btn:#f4f4f5;--btntext:#111113;--ico:rgba(255,255,255,.07)}}
   *{box-sizing:border-box}
   html:not([lang=es]) [lang=es],html[lang=es] [lang=en]{display:none}
-  body{margin:0;background:radial-gradient(120% 60% at 0% 0%,#2a1533 0%,var(--bg) 55%);background-color:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif}
   .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
   a{color:var(--mint)}
   .hero{display:grid;gap:40px;grid-template-columns:minmax(0,1fr);padding:40px 0 48px}
   @media(min-width:860px){.hero{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:center;padding-top:72px}}
-  .wm{height:40px;width:auto}
+  .wm{display:flex;align-items:center;gap:10px;font-size:22px;letter-spacing:-.3px}.wm img{height:34px;width:34px}
   h1{font-size:clamp(36px,7vw,58px);line-height:1.05;font-weight:800;letter-spacing:-1px;margin:28px 0 16px}
   h2{font-size:clamp(26px,4.5vw,36px);line-height:1.15;font-weight:800;letter-spacing:-.5px;margin:0 0 12px}
   h3{font-size:18px;margin:0 0 6px}
-  .a{color:var(--orchid)}.b{color:var(--mint)}
+  .a{color:inherit}.b{color:var(--orchid)}
   p{font-size:18px;line-height:1.5;color:var(--muted);margin:0 0 14px}
-  .btn{display:inline-block;margin:14px 0 8px;padding:16px 28px;border-radius:999px;background:var(--orchid);color:var(--bg);font-weight:800;font-size:19px;text-decoration:none}
+  .btn{display:inline-block;margin:14px 0 8px;padding:16px 28px;border-radius:999px;background:var(--btn);color:var(--btntext);font-weight:700;font-size:18px;text-decoration:none}
   .small{font-size:14px;color:var(--muted)}
-  .kb{width:100%;border-radius:22px;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px var(--line)}
+  .kb{width:100%;border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.18),0 0 0 1px var(--line)}
   section.block{padding:40px 0}
   .lead{max-width:680px}
   .stats{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
   @media(min-width:760px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
   .stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
-  .num{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--mint);line-height:1}
-  .stat .num.o{color:var(--orchid)}
+  .num{font-size:clamp(30px,5vw,40px);font-weight:800;letter-spacing:-1px;color:var(--text);line-height:1}
   .stat p{font-size:14px;margin:8px 0 0;line-height:1.4}
   .bars{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:20px}
   .bar{display:grid;grid-template-columns:120px minmax(0,1fr) 64px;gap:12px;align-items:center;margin:10px 0;font-size:15px;color:var(--muted)}
-  .bar i{display:block;height:14px;border-radius:7px;background:var(--orchid)}
-  .bar.one i{background:#6d5a75}
+  .bar i{display:block;height:14px;border-radius:7px;background:var(--text)}
+  .bar.one i{background:var(--line);outline:1px solid var(--line)}
   .bar b{color:var(--text);text-align:right}
   .src{font-size:13px;color:var(--muted);margin:12px 0 0}
   .grid{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
@@ -58,11 +58,9 @@
   @media(min-width:960px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
   .card p{font-size:15px;margin:0}
-  .ico{width:36px;height:36px;border-radius:10px;background:rgba(200,100,216,.16);display:grid;place-items:center;margin-bottom:12px}
-  .ico svg{width:20px;height:20px;stroke:var(--orchid);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .card:nth-child(even) .ico{background:rgba(154,240,184,.14)}
-  .card:nth-child(even) .ico svg{stroke:var(--mint)}
-  .honest{border-left:3px solid var(--mint);padding:4px 0 4px 16px;max-width:760px}
+  .ico{width:36px;height:36px;border-radius:10px;background:var(--ico);display:grid;place-items:center;margin-bottom:12px}
+  .ico svg{width:20px;height:20px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .honest{border-left:3px solid var(--line);padding:4px 0 4px 16px;max-width:760px}
   .honest p{font-size:15px}
   ol{margin:0;padding-left:20px;color:var(--muted);line-height:1.55;font-size:16px}
   .steps{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
@@ -75,7 +73,7 @@
 <div class="wrap">
   <div class="hero">
     <section>
-      <img class="wm" src="wordmark.svg" alt="Braid Keyboard">
+      <div class="wm"><img src="mark.svg" alt=""><span><b>Braid</b> Keyboard</span></div>
       <h1><span lang="en">The last keyboard <span class="a">you'll</span> <span class="b">ever use</span></span><span lang="es">El último teclado <span class="a">que vas</span> <span class="b">a usar</span></span></h1>
       <p lang="en">Swipe with both thumbs at once, with one, tap, or mix them in the same word, in English and Spanish without switching. It learns your words and keeps them on your phone: Braid has no internet permission.</p>
       <p lang="es">Desliza con los dos pulgares a la vez, con uno, toca o mezcla en la misma palabra, en español e inglés sin cambiar de idioma. Aprende tus palabras y las guarda en tu teléfono: Braid no tiene permiso de internet.</p>
