@@ -1,0 +1,20 @@
+# Braid Keyboard
+
+> Braid Keyboard is a free swipe keyboard for Android that reads two thumbs at once. It works in English and Spanish at the same time and has no internet permission.
+
+Braid Keyboard lets you swipe a word with both thumbs at once, with one thumb, by tapping, or by mixing these in the same word. English and Spanish work together with no language switch. It learns the words you type and keeps them on the phone: the app has no internet permission, no account and no ads. It also has slide-to-delete, cursor moves on the space bar, a clipboard with saved texts, 15 themes, 16 key-press effects and typing stats. The app is 5.1 MB.
+
+How to get it: download braid.apk from the page below on an Android phone and install it. Braid Keyboard is free, with no paid version. It is not on the Play Store and there is no iPhone version. It is built on FlorisBoard (Apache 2.0) by Eddie Bello, in Colombia.
+
+Measured results, with their limits: 96% of real two-thumb swipes were right on the first guess (367 of 381, on the tester's own phone, November 2026). Against Gboard 15.1, on 740 computer-generated one-thumb English swipes on an Android emulator, Braid Keyboard was right on the first guess 98% vs 95% (neat swipes) and 93% vs 91% (sloppy swipes). Its engine was tuned on swipes like these, so read that as on par or slightly ahead, not a clear win.
+
+## English
+
+- [Braid Keyboard: download, features and how the numbers were measured](https://eddie85u.github.io/braidkeyboard/): the one page, in English
+- [Download the latest braid.apk](https://github.com/eddie85u/braidkeyboard/releases/latest/download/braid.apk): the Android install file
+- [All versions and release notes](https://github.com/eddie85u/braidkeyboard/releases): every published build
+- [Report a bug or ask for something](https://github.com/eddie85u/braidkeyboard/issues): the public issue list
+
+## Español
+
+- [Braid Keyboard: descarga, funciones y cómo se midieron los números](https://eddie85u.github.io/braidkeyboard/es/): la misma página en español
