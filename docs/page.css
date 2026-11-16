@@ -132,11 +132,12 @@ legend{padding:0;font-size:15px;font-weight:700;color:var(--muted);margin-bottom
   @supports (animation-timeline:view()){
     body::before{content:"";position:fixed;inset:0 0 auto 0;height:3px;z-index:6;background:linear-gradient(90deg,var(--orchid),var(--mint));transform-origin:0 50%;animation:progress linear both;animation-timeline:scroll(root)}
     @keyframes progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-    .stat,.card,.lead,.bars,.honest,.steps,.try>*,.scroll-x,.cta>*{animation:rise linear both;animation-timeline:view();animation-range:entry 0px entry 170px}
-    @keyframes rise{from{opacity:0;transform:translateY(34px) scale(.985)}to{opacity:1;transform:none}}
-    .stat:nth-child(2),.card:nth-child(3n+2){animation-range:entry 30px entry 200px}
-    .stat:nth-child(3),.card:nth-child(3n){animation-range:entry 60px entry 230px}
-    .stat:nth-child(4){animation-range:entry 90px entry 260px}
+    .stat,.card,.lead,.bars,.honest,.steps,.try>*,.scroll-x,.cta>*{animation:fadein linear both,rise linear both;animation-timeline:view(),view();animation-range:entry 0px entry 56px,entry 0px entry 240px}
+    @keyframes fadein{from{opacity:0}}
+    @keyframes rise{from{transform:translateY(40px) scale(.98)}to{transform:none}}
+    .stat:nth-child(2),.card:nth-child(3n+2){animation-range:entry 0px entry 56px,entry 20px entry 290px}
+    .stat:nth-child(3),.card:nth-child(3n){animation-range:entry 0px entry 56px,entry 40px entry 340px}
+    .stat:nth-child(4){animation-range:entry 0px entry 56px,entry 60px entry 390px}
     .bar i{transform-origin:0 50%;animation:grow linear both;animation-timeline:view();animation-range:entry 0px entry 280px}
     @keyframes grow{from{transform:scaleX(0)}to{transform:none}}
     .hero>div{animation:arrive .6s cubic-bezier(.2,.8,.2,1) both,drift linear both;animation-timeline:auto,view();animation-range:normal,exit 0% exit 100%}
