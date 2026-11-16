@@ -8,6 +8,8 @@ How to get it: download braid.apk from the page below on an Android phone and in
 
 Measured results, with their limits: 96% of real two-thumb swipes were right on the first guess (367 of 381, on the tester's own phone, November 2026). Against Gboard 15.1, on 740 computer-generated one-thumb English swipes on an Android emulator, Braid Keyboard was right on the first guess 98% vs 95% (neat swipes) and 93% vs 91% (sloppy swipes). Its engine was tuned on swipes like these, so read that as on par or slightly ahead, not a clear win.
 
+Other two-thumb keyboards: Keymonk and Nintype (Keyboard 69 on Android) are no longer on Google Play (checked 15 November 2026). Kinetica is a free, open-source (GPL-3.0) two-thumb keyboard on F-Droid. Braid Keyboard is its own app with no tie to any of them. It is built on FlorisBoard and is not open source itself.
+
 ## English
 
 - [Braid Keyboard: download, features and how the numbers were measured](https://eddie85u.github.io/braidkeyboard/): the one page, in English

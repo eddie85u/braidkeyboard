@@ -45,14 +45,10 @@
     this.ctx = this.canvas.getContext('2d');
     this.keys = {};
     this.w = 0; this.h = 0;
-    this.measure();
   }
   Board.prototype.measure = function () {
     var box = this.el.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.w = box.width; this.h = box.height;
-    this.canvas.width = Math.round(box.width * dpr);
-    this.canvas.height = Math.round(box.height * dpr);
-    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var keys = this.keys = {}, list = this.el.querySelectorAll('.k');
     for (var i = 0; i < list.length; i++) {
       var r = list[i].getBoundingClientRect();
@@ -66,6 +62,9 @@
     var bar = this.el.querySelector('.kbar');
     if (bar) { var b = bar.getBoundingClientRect(); this.barX = b.left - box.left + b.width / 2; this.barY = b.top - box.top + b.height / 2; }
     this.colors();
+    this.canvas.width = Math.round(box.width * dpr);
+    this.canvas.height = Math.round(box.height * dpr);
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   };
   Board.prototype.colors = function () {
     var cs = getComputedStyle(this.el), c = this.c = {};
@@ -230,7 +229,7 @@
       for (var i = 0; i < word.length; i++) {
         var k = board.keys[word[i]];
         if (!k) continue;
-        sides[k.x < mid ? 'L' : 'R'].push({ x: k.x, y: k.y, t: at + LEAD + i * STEP });
+        sides[k.x < mid ? 'L' : 'R'].push({ x: k.x, y: k.y, t: at + LEAD + i * STEP, k: k });
       }
       ['L', 'R'].forEach(function (side) {
         var w = sides[side];
@@ -287,6 +286,13 @@
       board.bar.classList.toggle('lit', sub === 1);
     }
     var downs = 0, pull = after > 0 ? i2(seg(after, 0, 120)) : 0;
+    // Each key lights for a moment as a thumb reaches it.
+    if (after < 0) p.thumbs.forEach(function (th) {
+      for (var j = 0; j < th.w.length; j++) {
+        var a = 1 - Math.abs(tt - th.w[j].t) / 170, k = th.w[j].k;
+        if (a > 0) fillRR(g, k.l, k.t, k.r, k.b, keyH * 0.14, rgba(th.side === 'L' ? c.L : c.R, 0.3 * a));
+      }
+    });
     if (after < 120) p.thumbs.forEach(function (th) {
       if (tt < th.down) return;
       var col = th.side === 'L' ? c.L : c.R, col2 = th.side === 'L' ? c.L2 : c.R2;
@@ -373,8 +379,10 @@
   } else heroSeen = true;
   d.addEventListener('visibilitychange', wake);
   var rt = 0;
-  if ('ResizeObserver' in window) new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(layout, 120); }).observe(hero);
-  if (d.fonts && d.fonts.ready) d.fonts.ready.then(layout);
+  if ('ResizeObserver' in window) new ResizeObserver(function (en) {
+    if (Math.abs(en[0].contentRect.width - heroB.w) < 1) return;  // the first call, and height-only changes
+    clearTimeout(rt); rt = setTimeout(layout, 120);
+  }).observe(hero);
   reduce.addEventListener('change', function () { toggle.hidden = reduce.matches; layout(); });
 
   toggle.hidden = reduce.matches;

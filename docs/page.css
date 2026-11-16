@@ -99,3 +99,47 @@ legend{padding:0;font-size:15px;font-weight:700;color:var(--muted);margin-bottom
 .ki{width:5.4cqw;height:5.4cqw;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .faq h3{margin-top:22px}
 .faq p{font-size:16px}
+
+/* Round 2: polish. Everything here is decoration: the page reads the same without it. */
+.top{position:sticky;top:0;z-index:4;padding:12px 0;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.top .right{display:flex;align-items:center;gap:10px}
+.btn.sm{display:none;margin:0;padding:10px 18px;font-size:15px}
+@media(min-width:640px){.btn.sm{display:inline-block}}
+.hero{position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(closest-side at 50% 72%,color-mix(in srgb,var(--orchid) 20%,transparent),transparent),radial-gradient(closest-side at 72% 88%,color-mix(in srgb,var(--mint) 14%,transparent),transparent)}
+@media(min-width:860px){.hero::before{background:radial-gradient(closest-side at 72% 46%,color-mix(in srgb,var(--orchid) 22%,transparent),transparent),radial-gradient(closest-side at 86% 66%,color-mix(in srgb,var(--mint) 14%,transparent),transparent)}}
+.b{background:linear-gradient(90deg,var(--orchid),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.kbd{box-shadow:0 30px 70px -24px color-mix(in srgb,var(--L) 55%,transparent),0 18px 50px -20px color-mix(in srgb,var(--R) 40%,transparent),0 0 0 1px var(--line)}
+.btn{transition:transform .16s cubic-bezier(.2,.8,.2,1),filter .16s}
+.btn:hover{transform:translateY(-2px);filter:drop-shadow(0 10px 18px color-mix(in srgb,var(--orchid) 45%,transparent))}
+.btn:active{transform:scale(.97)}
+.card,.stat{transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+@media(hover:hover){.card:hover,.stat:hover{transform:translateY(-4px)}}
+.ico{background:linear-gradient(135deg,color-mix(in srgb,var(--orchid) 22%,transparent),color-mix(in srgb,var(--mint) 22%,transparent))}
+.cta{position:relative;isolation:isolate}
+.cta::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(40% 70% at 50% 60%,color-mix(in srgb,var(--orchid) 16%,transparent),transparent 72%)}
+.rivals{width:100%;border-collapse:collapse;font-size:15px;color:var(--muted)}
+.rivals th,.rivals td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.rivals th{color:var(--text);font-weight:700}
+.rivals tbody tr:last-child>*{border-bottom:0}
+@media(max-width:520px){.rivals{font-size:13px}.rivals th,.rivals td{padding:8px 6px}.scroll-x{padding:4px 6px}}
+.rivals .us td{color:var(--text);font-weight:700}
+.scroll-x{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:8px 10px;margin-top:20px}
+@media(prefers-reduced-motion:no-preference){
+  .hero>div{animation:arrive .6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes arrive{from{opacity:0;transform:translateY(18px)}}
+  /* Scroll-driven, on the compositor, no script. Browsers without it show the still page. */
+  @supports (animation-timeline:view()){
+    body::before{content:"";position:fixed;inset:0 0 auto 0;height:3px;z-index:6;background:linear-gradient(90deg,var(--orchid),var(--mint));transform-origin:0 50%;animation:progress linear both;animation-timeline:scroll(root)}
+    @keyframes progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    .stat,.card,.lead,.bars,.honest,.steps,.try>*,.scroll-x,.cta>*{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 24%}
+    @keyframes rise{from{opacity:0;transform:translateY(34px) scale(.985)}to{opacity:1;transform:none}}
+    .stat:nth-child(2),.card:nth-child(3n+2){animation-range:entry 20% cover 28%}
+    .stat:nth-child(3),.card:nth-child(3n){animation-range:entry 35% cover 32%}
+    .stat:nth-child(4){animation-range:entry 50% cover 36%}
+    .bar i{transform-origin:0 50%;animation:grow linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
+    @keyframes grow{from{transform:scaleX(0)}to{transform:none}}
+    .hero>div{animation:arrive .6s cubic-bezier(.2,.8,.2,1) both,drift linear both;animation-timeline:auto,view();animation-range:normal,exit 0% exit 100%}
+    @keyframes drift{to{transform:translateY(-46px);opacity:.35}}
+  }
+}
