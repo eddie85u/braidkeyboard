@@ -19,4 +19,4 @@ In Braid: **Help & about → Send feedback** makes one file with your note and h
 ## Privacy
 No internet permission, no accounts, no ads. What Braid learns about your typing stays on the phone until you send it yourself.
 
-Built with love in Colombia, by Eddie Bello. Built on [FlorisBoard](https://github.com/florisboard/florisboard) (Apache 2.0). This repository holds releases and feedback only, not the keyboard's code.
+Built with love in Colombia, by Eddie Bello ([strategyandstack.com](https://strategyandstack.com/) · [LinkedIn](https://www.linkedin.com/in/eddiebello/) · [Instagram](https://www.instagram.com/eddie85u/)). Built on [FlorisBoard](https://github.com/florisboard/florisboard) (Apache 2.0). This repository holds releases and feedback only, not the keyboard's code.
